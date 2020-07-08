@@ -1,5 +1,8 @@
 import Koa from 'koa';
 import jwt from 'koa-jwt';
+import helmet from 'koa-helmet';
+import cors from '@koa/cors';
+
 import { jwtSecret, port } from './config';
 
 const app = new Koa();
@@ -24,6 +27,12 @@ app.use(function (ctx) {
   }
 });
 // ------------------------------------------------ JWT 鉴权
+
+// 添加安全相关头，如内容安全策略
+app.use(helmet());
+
+// 开启同源策略支持
+app.use(cors());
 
 app.listen(port);
 
