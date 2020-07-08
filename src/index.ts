@@ -2,6 +2,7 @@ import Koa from 'koa';
 import jwt from 'koa-jwt';
 import helmet from 'koa-helmet';
 import cors from '@koa/cors';
+import bodyParser from 'koa-bodyparser';
 
 import { jwtSecret, port } from './config';
 
@@ -33,6 +34,9 @@ app.use(helmet());
 
 // 开启同源策略支持
 app.use(cors());
+
+// 开启 body 解析
+app.use(bodyParser());
 
 app.listen(port);
 
