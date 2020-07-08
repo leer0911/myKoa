@@ -24,7 +24,8 @@
     }
   },
   "dependencies": {
-    "koa": "^2.13.0"
+    "koa": "^2.13.0",
+    "koa-jwt": "^4.0.0"
   },
   "devDependencies": {
     "@types/koa": "^2.11.3",
