@@ -1,12 +1,24 @@
+import 'reflect-metadata';
 import Koa from 'koa';
 import jwt from 'koa-jwt';
 import helmet from 'koa-helmet';
 import cors from '@koa/cors';
 import bodyParser from 'koa-bodyparser';
 import winston from 'winston';
+import connect from './connect';
+import { Photo } from './entity/photo';
 
 import { logger } from './logger';
 import { jwtSecret, port } from './config';
+
+// 数据库连接
+connect().then((connection) => {
+  // 这里可以写实体操作相关的代码
+  const photo = new Photo();
+  return connection.manager.save(photo).then((photo) => {
+    console.log('Photo has been saved. Photo id is', photo.id);
+  });
+});
 
 const app = new Koa();
 
